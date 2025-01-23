@@ -1,0 +1,138 @@
+[
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/main.o",
+   "-c",
+   "src/main.c"
+  ],
+  "file": "src/main.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/parsing/fdf_map_parsing.o",
+   "-c",
+   "src/parsing/fdf_map_parsing.c"
+  ],
+  "file": "src/parsing/fdf_map_parsing.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/parsing/fdf_str_convert.o",
+   "-c",
+   "src/parsing/fdf_str_convert.c"
+  ],
+  "file": "src/parsing/fdf_str_convert.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/render/fdf_draw_line.o",
+   "-c",
+   "src/render/fdf_draw_line.c"
+  ],
+  "file": "src/render/fdf_draw_line.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/render/fdf_point_print.o",
+   "-c",
+   "src/render/fdf_point_print.c"
+  ],
+  "file": "src/render/fdf_point_print.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/error/fdf_handle_error.o",
+   "-c",
+   "src/error/fdf_handle_error.c"
+  ],
+  "file": "src/error/fdf_handle_error.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/hook/hook.o",
+   "-c",
+   "src/hook/hook.c"
+  ],
+  "file": "src/hook/hook.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/fdf_intra/intra-uuid-2ff9aff1-94c1-4eda-a2dd-4d338db739db-6241553-stetrel/new_fdf",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-I./includes",
+   "-o",
+   ".objs/hook/mouse_hook.o",
+   "-c",
+   "src/hook/mouse_hook.c"
+  ],
+  "file": "src/hook/mouse_hook.c"
+ }
+]

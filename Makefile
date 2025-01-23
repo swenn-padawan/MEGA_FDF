@@ -3,68 +3,70 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: swenntetrel <swenntetrel@42angouleme.fr>   +#+  +:+       +#+         #
+#    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/21 01:07:48 by swenntetrel       #+#    #+#              #
-#    Updated: 2025/01/21 00:53:11 by stetrel          ###   ########.fr        #
+#    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
+#    Updated: 2025/01/23 09:18:42 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= fdf
-
+# VARIABLES
 CC 		:= cc
+FLAGS 	:= -Wall -Wextra -Werror -g -O3
 
-CFLAGS 	:= -Wall -Wextra -Werror -g
+# FOLDERS
+OBJ_DIR = .objs
 
-IFLAGS	:= -I ./includes
+# SOURCES
+LIBMLX_PATH = ./lib/MacroLibX
 
-BUILD	:= .build
+LIBFT_PATH	= ./lib/Libft
 
-LIBMLX_PATH := ./lib/MacroLibX
+SRCS 	:= 	main.c \
+	   		parsing/fdf_map_parsing.c \
+			parsing/fdf_str_convert.c \
+			render/fdf_draw_line.c \
+			render/fdf_point_print.c \
+			error/fdf_handle_error.c \
+			hook/hook.c \
+			hook/mouse_hook.c \
 
-LIBFT_PATH	:= ./lib/Libft
+# OBJECTS
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-SRCS		:= main.c \
-			   hook/key_hook.c \
+# EXECUTABLES
+NAME = fdf
 
-SRCS_DIR	:= srcs
-
-SRCS		:= $(addprefix $(SRCS_DIR)/, $(SRCS))
-
-OBJS		:= $(addprefix $(BUILD)/, $(SRCS:%.c=%.o))
-
+# RULES
 all: $(NAME)
 
-$(NAME): $(LIBMLX_PATH)/libmlx.so $(LIBFT_PATH)/libft.a $(OBJS)
-	@echo "$(YELLOW)Creating $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PATH)/libft.a $(LIBMLX_PATH)/libmlx.so -lSDL2 -lm -o $(NAME)
-	@echo "$(GREEN)$(NAME) Created successfully !$(RESET)"
+$(NAME): $(LIBMLX_PATH)/libmlx.so  $(LIBFT_PATH)/libft.a $(OBJS)
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_PATH)/libft.a $(LIBMLX_PATH)/libmlx.so -lSDL2 -lm -o $(NAME)
+	@echo " $(GREEN)$(BOLD)$(ITALIC)■$(RESET)  building	$(GREEN)$(BOLD)$(ITALIC)$(NAME)$(RESET)"
 
 $(LIBMLX_PATH)/libmlx.so:
 	@echo "$(YELLOW)Compiling MLX42...$(RESET)"
-	@make -C $(LIBMLX_PATH)
+	@make -C $(LIBMLX_PATH) -s -j
 	@echo "$(GREEN)MLX42 created successfully!$(RESET)"
 	
-$(LIBFT_PATH)/libft.a:
+libft:
 	@echo "$(YELLOW)Compiling Libft...$(RESET)"
-	@make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH) -s
 	@echo "$(GREEN)Libft created successfully!$(RESET)"
 
-$(BUILD)/%.o: %.c
+$(OBJ_DIR)/%.o: ./src/%.c
 	@mkdir -p $(dir $@)
-	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@echo " $(CYAN)$(BOLD)$(ITALIC)■$(RESET)  compiling	$(GRAY)$(BOLD)$(ITALIC)$^$(RESET)"
 	@$(CC) $(FLAGS) -I./includes -o $@ -c $<
 	
 clean:
-	@echo "$(RED)Cleaning MLX42 files...$(RESET)"
-	@make clean -C $(LIBFT_PATH)
-	@echo "$(RED)Cleaning Libft files...$(RESET)"
-	@echo "$(RED)Cleaning object files...$(RESET)"
-	@rm -rf $(BUILD)
+	@make clean -C $(LIBFT_PATH) -s
+	@echo " $(RED)$(BOLD)$(ITALIC)■$(RESET)  cleaned	$(RED)$(BOLD)$(ITALIC)$(MLX_DIR)$(RESET)"
+	@rm -rf $(OBJ_DIR)
 	
 fclean: clean
 	@echo "$(RED)Cleaning MLX42 files...$(RESET)"
-	@make fclean -C $(LIBMLX_PATH)
+	@make fclean -C $(LIBMLX_PATH) -s
 	@echo "$(RED)Cleaning executables...$(RESET)"
 	@rm -f $(NAME)
 	
@@ -72,8 +74,20 @@ re: clean all
 
 remake: fclean all
 
+.PHONY: all clean fclean re
 
-GREEN = \033[0;32m
-YELLOW = \033[0;33m
-RED = \033[0;31m
-RESET = \033[0m
+BLACK		=	\033[30m
+RED			=	\033[31m
+GREEN		=	\033[32m
+YELLOW		=	\033[33m
+BLUE		=	\033[34m
+MAGENTA		=	\033[35m
+CYAN		=	\033[36m
+WHITE		=	\033[37m
+GRAY		=	\033[90m
+
+BOLD		=	\033[1m
+ITALIC		=	\033[3m
+
+RESET		=	\033[0m
+LINE_CLR	=	\33[2K\r
