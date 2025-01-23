@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/01/23 09:18:42 by stetrel          ###   ########.fr        #
+#    Updated: 2025/01/23 12:29:57 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ FLAGS 	:= -Wall -Wextra -Werror -g -O3
 OBJ_DIR = .objs
 
 # SOURCES
-LIBMLX_PATH = ./lib/MacroLibX
+LIBMLX_PATH = ./libs/MacroLibX
 
-LIBFT_PATH	= ./lib/Libft
+LIBFT_PATH	= ./libs/Libft
 
 SRCS 	:= 	main.c \
 	   		parsing/fdf_map_parsing.c \

@@ -6,15 +6,15 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:51:55 by stetrel           #+#    #+#             */
-/*   Updated: 2025/01/23 09:18:18 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:30:18 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../lib/Libft/include/libft.h"
-# include "../lib/MacroLibX/includes/mlx.h"
+# include "../libs/Libft/include/libft.h"
+# include "../libs/MacroLibX/includes/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdint.h>
