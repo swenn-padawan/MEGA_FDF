@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:02:52 by stetrel           #+#    #+#             */
-/*   Updated: 2025/01/21 20:51:20 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/01/25 01:57:52 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,41 @@
 
 static void	rotation_hook(int key, t_mlx *mlx)
 {
+	*(mlx->teta_x) = *(mlx->teta_x) *(M_PI / 180);
+	*(mlx->teta_y) = *(mlx->teta_y) *(M_PI / 180);
+	if (key == SDL_SCANCODE_SPACE)
+	{
+		mlx_clear_window(mlx->mlx, mlx->win);
+		mlx->camera = camera_mult(*(mlx->camera), camera_scale(*(mlx->scale)));
+		fdf_point_print(mlx);
+	}
 	if (key == SDL_SCANCODE_UP)
 	{
-		mlx->transfo->x += 1;
+		*(mlx->teta_x) -= 0.1;
+		mlx->camera = camera_mult(*(mlx->camera), cam_rotate_x(*(mlx->teta_x)));
 		mlx_clear_window(mlx->mlx, mlx->win);
-		fdf_point_print(mlx, mlx->transfo);
+		fdf_point_print(mlx);
 	}
 	else if (key == SDL_SCANCODE_DOWN)
 	{
-		mlx->transfo->x -= 1;
+		*(mlx->teta_x) += 0.1;
+		mlx->camera = camera_mult(*(mlx->camera), cam_rotate_x(*(mlx->teta_x)));
 		mlx_clear_window(mlx->mlx, mlx->win);
-		fdf_point_print(mlx, mlx->transfo);
+		fdf_point_print(mlx);
 	}
 	else if (key == SDL_SCANCODE_RIGHT)
 	{
-		mlx->transfo->y += 1;
+		(*mlx->teta_y) -= 0.1;
+		mlx->camera = camera_mult(*(mlx->camera), cam_rotate_y(*(mlx->teta_y)));
 		mlx_clear_window(mlx->mlx, mlx->win);
-		fdf_point_print(mlx, mlx->transfo);
+		fdf_point_print(mlx);
 	}
 	else if (key == SDL_SCANCODE_LEFT)
 	{
-		mlx->transfo->y -= 1;
+		*(mlx->teta_y) += 0.1;
+		mlx->camera = camera_mult(*(mlx->camera), cam_rotate_y(*(mlx->teta_y)));
 		mlx_clear_window(mlx->mlx, mlx->win);
-		fdf_point_print(mlx, mlx->transfo);
+		fdf_point_print(mlx);
 	}
 }
 
@@ -47,13 +59,8 @@ static void	other_hook(int key, t_mlx *mlx)
 		mlx_loop_end(mlx->mlx);
 	else if (key == SDL_SCANCODE_R)
 	{
-		mlx->transfo->x = 30;
-		mlx->transfo->z = -10;
-		mlx->transfo->zoom = 1;
-		mlx->transfo->x = 0;
-		mlx->transfo->y = 0;
 		mlx_clear_window(mlx->mlx, mlx->win);
-		fdf_point_print(mlx, mlx->transfo);
+		fdf_point_print(mlx);
 	}
 }
 
@@ -62,8 +69,6 @@ int	key_hook(int key, void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
-	if (mlx->transfo->zoom <= 1)
-		mlx->transfo->zoom = 1;
 	rotation_hook(key, mlx);
 	other_hook(key, mlx);
 	return (0);

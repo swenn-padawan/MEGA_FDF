@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:51:55 by stetrel           #+#    #+#             */
-/*   Updated: 2025/01/23 12:30:18 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/01/25 01:34:43 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,16 @@ typedef struct s_draw
 	float			max;
 }					t_draw;
 
-typedef struct s_tranfo
-{
-	int				zoom;
-	double			x;
-	double			y;
-	double			z;
-}					t_transfo;
-
 typedef struct s_mlx
 {
 	void			*mlx;
 	void			*win;
 	uint32_t		*data;
 	t_map			*map;
-	t_transfo		*transfo;
+	t_camera		*camera;
+	float			*scale;
+	float			*teta_x;
+	float			*teta_y;
 }					t_mlx;
 
 // PARSING
@@ -120,7 +115,7 @@ int					fdf_parse_point(t_map *map, char *str, char **remain);
 char				*fdf_listjoin(t_list *list, int size);
 
 // RENDER
-int					fdf_point_print(t_mlx *mlx, t_transfo *transfo);
+int					fdf_point_print(t_mlx *mlx);
 void				fdf_line_draw(int *matrix0, int *matrix1, t_mlx *mlx);
 int					fdf_coord_check(int x, int y);
 
@@ -129,12 +124,17 @@ uint32_t			fdf_custom_color(int height, uint32_t color);
 
 // MATHS
 
+t_camera	cam_rotate_x(float teta);
+t_camera	cam_rotate_y(float teta);
+t_camera	cam_rotate_z(float teta);
+t_camera	camera_fov(void);
+t_camera	camera_scale(float scale);
+t_camera	*camera_mult(t_camera a, t_camera b);
+
 // KEY_HOOK
 int					key_hook(int key, void *param);
 int					window_hook(int event, void *param);
 int					mouse_wheel_hook(int button, void *params);
-
-// UTILS
 
 // ERROR
 void				fdf_handle_error(int err);
